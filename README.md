@@ -1,4 +1,6 @@
-# ls - Simple Directory Listing Tool
+# redmond-ls
+
+![ls CI](https://github.com/polatengin/redmond-ls/actions/workflows/ci.yml/badge.svg)
 
 A simple implementation of the Unix `ls` command written in C from scratch.
 
