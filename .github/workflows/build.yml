@@ -1,0 +1,56 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build ls
+      run: make
+
+    - name: Test basic functionality
+      run: |
+        echo "Testing basic ls functionality..."
+        ./ls
+        echo "✓ Basic ls works"
+
+    - name: Test long format
+      run: |
+        echo "Testing long format..."
+        ./ls -l
+        echo "✓ Long format works"
+
+    - name: Test show hidden files
+      run: |
+        echo "Testing hidden files..."
+        ./ls -a
+        echo "✓ Show hidden files works"
+
+    - name: Test combined options
+      run: |
+        echo "Testing combined options..."
+        ./ls -la
+        echo "✓ Combined options work"
+
+    - name: Test help
+      run: |
+        echo "Testing help..."
+        ./ls -h
+        echo "✓ Help works"
+
+    - name: Test specific directory
+      run: |
+        echo "Testing specific directory..."
+        ./ls /etc > /dev/null
+        echo "✓ Directory listing works"
+
+    - name: Clean build
+      run: make clean
